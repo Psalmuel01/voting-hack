@@ -1,9 +1,9 @@
 import { ethers } from "hardhat";
 
 async function main() {
-    const [signer] = await ethers.getSigners()
-    signer.address.
-  const contract = await ethers.deployContract("Swisstronik", ["Hello Swisstronik"]);
+  const contract = await ethers.deployContract("Swisstronik", [
+    "Hello Swisstronik",
+  ]);
 
   await contract.waitForDeployment();
 

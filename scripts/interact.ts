@@ -19,11 +19,11 @@ async function main() {
     candidate2.address,
   ];
 
-  //   const voter1Signer = await ethers.getImpersonatedSigner(address);
+  // const voter1Signer = await ethers.getImpersonatedSigner(address);
 
   // const registerVoter = await votingContract.registerVoter(addresses[3]);
   // const addCandidate = await votingContract.addCandidate(addresses[5], "Bol");
-  //   const vote = await votingContract.connect(voter3).vote(addresses[5]);
+  // const vote = await votingContract.connect(voter3).vote(addresses[5]);
   const candidateCount = await votingContract.getCandidateCount();
   const candidateInfo1 = await votingContract.getCandidateInfo(0);
   const candidateInfo2 = await votingContract.getCandidateInfo(2);
