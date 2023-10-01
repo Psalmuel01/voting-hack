@@ -17,7 +17,7 @@ The contract defines the `VotingSystem` contract, which contains functions for:
 ### Prerequisites
 
 - [Hardhat](https://hardhat.org/) for compiling, testing, and deploying smart contracts.
-- [Swisstronik](https://swisstronik.gitbook.io/swisstronik-docs/about-swisstronik/block-explorers) for interacting with the deployed contract.
+- [Swisstronik](https://swisstronik.gitbook.io/swisstronik-docs/build-on-swisstronik/contract-deployment-hardhat) for interacting with the deployed contract.
 
 ### Deployment
 
@@ -31,7 +31,7 @@ The contract defines the `VotingSystem` contract, which contains functions for:
 
 3. Deploy the compiled contract to an Ethereum-compatible blockchain using Hardhat, in this case, **Swisstronik**. Make sure to configure your Hardhat network settings appropriately.
 
-   npx hardhat run scripts/deploy.js --network YOUR_NETWORK
+   npx hardhat run scripts/deploy.js --network swisstronik
 
 ### Interacting with the Contract
 
