@@ -49,4 +49,4 @@ After deployment, you can interact with the contract using Swisstronik:
 
 ## Deployed Contract Address
 
-The contract has been deployed to the following address on the Ethereum network: **0x187c16e7ae4FE322886B13672fD63284bD4B938e**
+The contract has been deployed to the following address on the Ethereum network: **0x0CBe2d60f2CbE75BE117ffCAeEb453566FA8806B**

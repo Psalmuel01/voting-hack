@@ -19,11 +19,12 @@ const sendShieldedQuery = async (provider, destination, data) => {
 };
 
 async function main() {
-  const contractAddress = "0x187c16e7ae4FE322886B13672fD63284bD4B938e";
+  const contractAddress = "0x0CBe2d60f2CbE75BE117ffCAeEb453566FA8806B";
   const [signer] = await ethers.getSigners();
   const contractFactory = await ethers.getContractFactory("VotingSystem");
   const contract = contractFactory.attach(contractAddress);
   const functionName = "getCandidateInfo";
+  //  add at least a candidate before calling this function, remember index starts from zero
   const responseMessage = await sendShieldedQuery(
     signer.provider,
     contractAddress,
@@ -33,7 +34,7 @@ async function main() {
     "Candidate Info:",
     contract.interface.decodeFunctionResult(functionName, responseMessage)[0],
     contract.interface.decodeFunctionResult(functionName, responseMessage)[1],
-    contract.interface.decodeFunctionResult(functionName, responseMessage)[2],
+    contract.interface.decodeFunctionResult(functionName, responseMessage)[2]
   );
 }
 

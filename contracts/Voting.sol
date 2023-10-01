@@ -55,6 +55,13 @@ contract VotingSystem {
         require(_candidateAddress != address(0), "Invalid candidate address");
         require(bytes(_name).length > 0, "Candidate name cannot be empty");
 
+        // Check if the candidate with the given address already exists
+        require(
+            candidates[_candidateAddress].candidateAddress == address(0),
+            "Candidate with this address already exists"
+        );
+
+        // Check if the candidate with the given name already exists
         for (uint256 i = 0; i < candidateAddresses.length; i++) {
             require(
                 keccak256(bytes(candidates[candidateAddresses[i]].name)) !=
@@ -65,6 +72,20 @@ contract VotingSystem {
 
         candidates[_candidateAddress] = Candidate(_candidateAddress, _name, 0); //Initialize vote count to zero
         candidateAddresses.push(_candidateAddress);
+    }
+
+    function vote(address _candidateAddress) public onlyRegisteredVoter {
+        require(!hasVoted[msg.sender], "You have already voted");
+        require(
+            candidates[_candidateAddress].candidateAddress != address(0),
+            "Invalid candidate address"
+        );
+
+        candidates[_candidateAddress].voteCount++; //Increment the vote count for the selected candidate
+        hasVoted[msg.sender] = true;
+        totalVoteCount++;
+
+        emit VoteCast(msg.sender, _candidateAddress);
     }
 
     function getCandidateCount() public view returns (uint256) {
@@ -81,20 +102,6 @@ contract VotingSystem {
             candidates[candidateAddress].name,
             candidates[candidateAddress].voteCount
         );
-    }
-
-    function vote(address _candidateAddress) public onlyRegisteredVoter {
-        require(!hasVoted[msg.sender], "You have already voted");
-        require(
-            candidates[_candidateAddress].candidateAddress != address(0),
-            "Invalid candidate address"
-        );
-
-        candidates[_candidateAddress].voteCount++; //Increment the vote count for the selected candidate
-        hasVoted[msg.sender] = true;
-        totalVoteCount++;
-
-        emit VoteCast(msg.sender, _candidateAddress);
     }
 
     function getTotalVoteCount() public view returns (uint256) {
